@@ -39,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 18),
                 child: Text(
-                  "Let's Connect With Us!",
+                  "Let's Connect with Us!",
                   style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,

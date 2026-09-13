@@ -16,8 +16,6 @@ class _loginscreenState extends State<loginscreen> {
   final RegExp emailRegex = RegExp(
     r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
   );
-
-  // Password Regex
   final RegExp passwordRegex = RegExp(
     r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$',
   );
@@ -30,16 +28,16 @@ class _loginscreenState extends State<loginscreen> {
 
       body:
       SafeArea(
-        child: Center(
-          child: Container(
-            width: 450,
-            height: 850,
-            padding: const EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-            ),
-
+          child: SingleChildScrollView(
+            child: Center(
+              child: Container(
+                width: 450,
+                height: 830,
+                padding: const EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -70,7 +68,6 @@ class _loginscreenState extends State<loginscreen> {
                     ),
 
                     const SizedBox(width: 14),
-
                     Expanded(
                       child: SocialButtonWidget(text: 'Apple', icon: const Icon(Icons.apple, color: Colors.black,),
                       ),
@@ -112,7 +109,6 @@ class _loginscreenState extends State<loginscreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      // Name
                       const Text(
                         'Name',
                         style: TextStyle(
@@ -122,7 +118,6 @@ class _loginscreenState extends State<loginscreen> {
                       ),
 
                       const SizedBox(height: 8),
-
                       CustomTextField(
                         controller: namecontroller,
                         hintText: 'Enter your name',
@@ -136,8 +131,6 @@ class _loginscreenState extends State<loginscreen> {
                       ),
 
                       const SizedBox(height: 18),
-
-                      // Email
                       const Text(
                         'Email',
                         style: TextStyle(
@@ -147,7 +140,6 @@ class _loginscreenState extends State<loginscreen> {
                       ),
 
                       const SizedBox(height: 8),
-
                       CustomTextField(
                         controller: emailcontroller,
                         hintText: 'Enter your email',
@@ -156,11 +148,9 @@ class _loginscreenState extends State<loginscreen> {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your email';
                           }
-
                           if (!emailRegex.hasMatch(value)) {
                             return 'Please enter a valid email';
                           }
-
                           return null;
                         },
                       ),
@@ -201,7 +191,6 @@ class _loginscreenState extends State<loginscreen> {
                       ),
 
                       const SizedBox(height: 20),
-
                     ],
                   ),
                 ),
@@ -249,7 +238,6 @@ class _loginscreenState extends State<loginscreen> {
                   ),
                 ),
                 const SizedBox(height: 15),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -287,8 +275,10 @@ class _loginscreenState extends State<loginscreen> {
         ),
 
       ),
+      )
     );
   }
+
 }
 
 
