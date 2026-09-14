@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'customtextfield.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'Theme_cubit.dart';
+import 'loginscreen.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
   @override
@@ -20,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -36,13 +38,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
 
               const SizedBox(height: 25),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 18),
                 child: Text(
                   "Let's Connect with Us!",
                   style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
                   ),
                 ),
               ),
@@ -89,10 +92,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         alignment: Alignment.centerRight,
                         child: TextButton(
                           onPressed: () {},
-                          child: const Text(
+                          child: Text(
                             'Forgot password?',
                             style: TextStyle(
-                              color: Colors.black87,
+                              color: Theme.of(context).textTheme.bodyMedium?.color,
                               fontSize: 13,
                             ),
                           ),
@@ -114,11 +117,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               borderRadius: BorderRadius.circular(25),
                             ),
                           ),
-                          child: const Text(
+                          child: Text(
                             'Sign Up',
                             style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
+                              color: Theme.of(context).textTheme.bodyMedium?.color,
                             ),
                           ),
                         ),
@@ -127,25 +131,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: 20),
                       Row(
                         children: [
-                          const Expanded(
+                           Expanded(
                             child: Divider(
-                              color: Color(0xffeeeeee),
+                              color: Theme.of(context).dividerColor,
                             ),
                           ),
 
-                          const Padding(
+                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 10),
                             child: Text(
                               'or',
                               style: TextStyle(
-                                color: Colors.grey,
+                                color: Theme.of(context).textTheme.bodyMedium?.color,
                               ),
                             ),
                           ),
 
-                          const Expanded(
+                           Expanded(
                             child: Divider(
-                              color: Color(0xffeeeeee),
+                              color: Theme.of(context).dividerColor,
                             ),
                           ),
                         ],
@@ -212,6 +216,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                 ),
+              ),
+              const SizedBox(height: 15),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Already have an account?",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: Theme.of(context).textTheme.bodyMedium?.color,
+                    ),
+                  ),
+
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Login',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

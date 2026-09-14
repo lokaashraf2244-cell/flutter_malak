@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'loginscreen.dart';
-import 'customsocialbutton.dart';
+import 'Theme_cubit.dart';
+import 'Application_theme.dart';
+import 'Theme_state.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +14,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const loginscreen(),
+    return BlocProvider(create: (context)=> ThemeCubit(),
+     child: BlocBuilder<ThemeCubit,ThemeState>(
+       builder: (context,state) {
+         return MaterialApp(
+           debugShowCheckedModeBanner: false,
+           theme: state.isDark
+               ? Apptheme().darktheme()
+               : Apptheme().lighttheme() ,
+           home: const loginscreen(),
 
+         );
+
+       },
+     )
     );
   }
 }

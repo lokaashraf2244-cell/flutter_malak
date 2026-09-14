@@ -17,15 +17,15 @@ class SocialButtonWidget extends StatelessWidget {
       icon: icon,
       label: Text(
         text,
-        style: const TextStyle(
-          color: Colors.black,
+        style:  TextStyle(
+          color: Theme.of(context).dividerColor,
           fontSize: 18,
         ),
       ),
       style: OutlinedButton.styleFrom(
         minimumSize: const Size(double.infinity, 45),
-        side: const BorderSide(
-          color: Colors.black87,
+        side:  BorderSide(
+          color: Theme.of(context).dividerColor,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'customsocialbutton.dart';
 import 'customtextfield.dart';
 import 'signupscreen.dart';
-
+import 'Theme_cubit.dart';
+import 'Theme_state.dart';
+import 'Application_theme.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class loginscreen extends StatefulWidget{
   const loginscreen({super.key});
@@ -24,7 +27,7 @@ class _loginscreenState extends State<loginscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffdce8f5),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
 
       body:
       SafeArea(
@@ -35,25 +38,41 @@ class _loginscreenState extends State<loginscreen> {
                 height: 830,
                 padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(20),
                 ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                BlocBuilder<ThemeCubit, ThemeState>(
+                  builder: (context, state) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Switch(
+                          value: state.isDark,
+                          onChanged: (value) {
+                            context.read<ThemeCubit>().switchtheme();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                 Text(
                   'Hey, Hello 👋',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
                   ),
                 ),
                 const SizedBox(height: 15),
-                const Text(
+                 Text(
                   'Enter your credentials to access\nyour account',
                   style: TextStyle(
                     fontSize: 15,
-                    color: Colors.black87,
+                    color: Theme.of(context).textTheme.bodyMedium?.color,
                   ),
                 ),
                 const SizedBox(height: 25),
@@ -69,7 +88,7 @@ class _loginscreenState extends State<loginscreen> {
 
                     const SizedBox(width: 14),
                     Expanded(
-                      child: SocialButtonWidget(text: 'Apple', icon: const Icon(Icons.apple, color: Colors.black,),
+                      child: SocialButtonWidget(text: 'Apple', icon: Icon(Icons.apple,  color: Theme.of(context).dividerColor,),
                       ),
                     ),
                   ],
@@ -78,26 +97,26 @@ class _loginscreenState extends State<loginscreen> {
 
                 Row(
                   children: [
-                    const Expanded(
+                     Expanded(
                       child: Divider(
-                        color: Colors.black87,
+                        color: Theme.of(context).dividerColor,
                       ),
                     ),
 
-                    const Padding(
+                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         'or',
                         style: TextStyle(
-                          color: Colors.black87,
+                          color: Theme.of(context).dividerColor,
                           fontSize: 14,
                         ),
                       ),
                     ),
 
-                    const Expanded(
+                     Expanded(
                       child: Divider(
-                        color: Colors.black87,
+                        color: Theme.of(context).dividerColor,
                       ),
                     ),
                   ],
@@ -109,11 +128,12 @@ class _loginscreenState extends State<loginscreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      const Text(
+                       Text(
                         'Name',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
+                          color: Theme.of(context).dividerColor,
                         ),
                       ),
 
@@ -131,11 +151,12 @@ class _loginscreenState extends State<loginscreen> {
                       ),
 
                       const SizedBox(height: 18),
-                      const Text(
+                       Text(
                         'Email',
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
+                          color: Theme.of(context).dividerColor,
                         ),
                       ),
 
@@ -160,13 +181,14 @@ class _loginscreenState extends State<loginscreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Password',style: TextStyle(
+                      Text('Password',style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
+                        color: Theme.of(context).dividerColor,
                       ),),
                       TextButton(
                         onPressed: () {},
-                        child: const Text(
+                        child:  Text(
                           'Forgot Password?',
                           style: TextStyle(fontSize: 12),
                         ),
@@ -241,11 +263,11 @@ class _loginscreenState extends State<loginscreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Don't have an account?",
                       style: TextStyle(
                         fontSize: 13,
-                        color: Colors.black87,
+                        color: Theme.of(context).textTheme.bodyLarge?.color,
                       ),
                     ),
 
